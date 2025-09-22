@@ -1,43 +1,43 @@
 enable-magisk-update = true # set this to false if you do not want to receive updates for the module in magisk app
 
 [YouTube]
-build-mode = "both"
-arch = "arm64-v8a"
-apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube/"
+#apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
+arch = "arm64-v8a"
+build-mode = "both"
 
 [TikTok]
-build-mode = "both"
-arch = "arm64-v8a"
-apkmirror-dlurl = "https://www.apkmirror.com/apk/tiktok-pte-ltd/tik-tok/"
+#apkmirror-dlurl = "https://www.apkmirror.com/apk/tiktok-pte-ltd/tik-tok/"
 uptodown-dlurl = "https://tik-tok.en.uptodown.com/android"
+arch = "arm64-v8a"
+build-mode = "both"
 
 [Messenger]
-build-mode = "both"
-arch = "arm64-v8a"
-apkmirror-dlurl = "https://www.apkmirror.com/apk/facebook-2/messenger/"
+#apkmirror-dlurl = "https://www.apkmirror.com/apk/facebook-2/messenger/"
 uptodown-dlurl = "https://facebook-messenger.en.uptodown.com/android"
+arch = "arm64-v8a"
+build-mode = "both"
 
 [Reddit]
-apkmirror-dlurl = "https://www.apkmirror.com/apk/redditinc/reddit/"
+#apkmirror-dlurl = "https://www.apkmirror.com/apk/redditinc/reddit/"
 uptodown-dlurl = "https://reddit-official-app.en.uptodown.com/android"
 arch = "arm64-v8a"
 build-mode = "both"
 
 [Facebook]
-apkmirror-dlurl = "https://www.apkmirror.com/apk/facebook-2/facebook/"
+#apkmirror-dlurl = "https://www.apkmirror.com/apk/facebook-2/facebook/"
 uptodown-dlurl = "https://facebook.en.uptodown.com/android"
 arch = "arm64-v8a"
 build-mode = "both"
 
 [SolidExplorer2]
-apkmirror-dlurl = "https://www.apkmirror.com/apk/facebook-2/facebook/"
-uptodown-dlurl = "https://solid-explorer-file-manager.vi.uptodown.com/android"
+#apkmirror-dlurl = "https://www.apkmirror.com/apk/neatbytes/solid-explorer-beta/"
+uptodown-dlurl = "https://solid-explorer-file-manager.en.uptodown.com/android"
 arch = "arm64-v8a"
 build-mode = "both"
 
 [Viber]
-apkmirror-dlurl = "https://www.apkmirror.com/apk/viber-media-s-a-r-l/viber/"
-uptodown-dlurl = "https://viber-free-calls-and-messages.vi.uptodown.com/android"
+#apkmirror-dlurl = "https://www.apkmirror.com/apk/viber-media-s-a-r-l/viber/"
+uptodown-dlurl = "https://viber-free-calls-and-messages.en.uptodown.com/android"
 arch = "arm64-v8a"
 build-mode = "both"
