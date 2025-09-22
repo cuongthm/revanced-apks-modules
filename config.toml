@@ -41,3 +41,9 @@ apkmirror-dlurl = "https://www.apkmirror.com/apk/facebook-2/facebook/"
 uptodown-dlurl = "https://solid-explorer-file-manager.vi.uptodown.com/android"
 arch = "arm64-v8a"
 build-mode = "both"
+
+[Viber]
+apkmirror-dlurl = "https://www.apkmirror.com/apk/viber-media-s-a-r-l/viber/"
+uptodown-dlurl = "https://viber-free-calls-and-messages.vi.uptodown.com/android"
+arch = "arm64-v8a"
+build-mode = "both"
