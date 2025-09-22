@@ -1,5 +1,5 @@
 Reddit: 2024.17.0  
-SolidExplorer2: 2.8.63  
+SolidExplorer: 2.8.63  
 TikTok: 36.5.4  
 Viber: 26.1.2.0  
 YouTube: 20.14.43  
