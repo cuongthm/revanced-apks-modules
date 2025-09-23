@@ -392,13 +392,10 @@ dl_uptodown() {
 	done
 	if [ -z "$versionURL" ]; then return 1; fi
  	versionURL=$(jq -e -r '.url + "/" + .extraURL + "/" + (.versionID | tostring)' <<<"$versionURL")
-echo "$versionURL"
 	resp=$(req "$versionURL" -) || return 1
  	
 	local data_version files node_arch data_file_id
 	data_version=$($HTMLQ '.button.variants' --attribute data-version <<<"$resp") || return 1
-echo "$data_version"
-exit
 	if [ "$data_version" ]; then
 		files=$(req "${uptodown_dlurl%/*}/app/${data_code}/version/${data_version}/files" - | jq -e -r .content) || return 1
 		for ((n = 1; n < 12; n += 2)); do
@@ -418,6 +415,8 @@ exit
 	else
 		req "https://dw.uptodown.com/dwn/${data_url}" "$output"
 	fi
+echo "https://dw.uptodown.com/dwn/${data_url}"
+exit
 }
 get_uptodown_pkg_name() { $HTMLQ --text "tr.full:nth-child(1) > td:nth-child(3)" <<<"$__UPTODOWN_RESP_PKG__"; }
 
