@@ -382,6 +382,8 @@ dl_uptodown() {
 	data_code=$($HTMLQ "#detail-app-name" --attribute data-code <<<"$__UPTODOWN_RESP__")
 	local versionURL=""
 	local is_bundle=false
+echo "${uptodown_dlurl}/apps/${data_code}/versions/${i}"
+exit
 	for i in {1..5}; do
 		resp=$(req "${uptodown_dlurl}/apps/${data_code}/versions/${i}" -)
 		if ! op=$(jq -e -r ".data | map(select(.version == \"${version}\")) | .[0]" <<<"$resp"); then
