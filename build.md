@@ -1,8 +1,7 @@
-Messenger: 525.0.0.44.108  
 Reddit: 2024.17.0  
 SolidExplorer: 2.8.63  
-Viber: 26.1.2.0  
 TikTok: 36.5.4  
+Viber: 26.1.2.0  
 YouTube: 20.14.43  
 
 Install [Microg](https://github.com/ReVanced/GmsCore/releases) for non-root YouTube and YT Music APKs  
