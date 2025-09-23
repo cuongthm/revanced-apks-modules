@@ -1,34 +1,41 @@
 enable-magisk-update = true # set this to false if you do not want to receive updates for the module in magisk app
 
+[Messenger]
+# apkmirror-dlurl = "https://www.apkmirror.com/apk/facebook-2/messenger/"
+uptodown-dlurl = "https://facebook-messenger.uptodown.com/android"
+build-mode = "both"
+
+[Facebook]
+# apkmirror-dlurl = "https://www.apkmirror.com/apk/facebook-2/facebook/"
+uptodown-dlurl = "https://facebook.uptodown.com/android"
+build-mode = "both"
+
 [YouTube]
+enabled = false
 apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube/"
 arch = "arm64-v8a"
 build-mode = "both"
 
 [TikTok]
+enabled = false
 apkmirror-dlurl = "https://www.apkmirror.com/apk/tiktok-pte-ltd/tik-tok/"
 arch = "arm64-v8a"
 build-mode = "both"
 
-[Messenger]
-apkmirror-dlurl = "https://www.apkmirror.com/apk/facebook-2/messenger/"
-build-mode = "both"
-
 [Reddit]
+enabled = false
 apkmirror-dlurl = "https://www.apkmirror.com/apk/redditinc/reddit/"
 arch = "arm64-v8a"
 build-mode = "both"
 
-[Facebook]
-apkmirror-dlurl = "https://www.apkmirror.com/apk/facebook-2/facebook/"
-build-mode = "both"
-
 [SolidExplorer]
+enabled = false
 apkmirror-dlurl = "https://www.apkmirror.com/apk/neatbytes/solid-explorer-beta/"
 arch = "arm64-v8a"
 build-mode = "both"
 
 [Viber]
+enabled = false
 apkmirror-dlurl = "https://www.apkmirror.com/apk/viber-media-s-a-r-l/viber/"
 arch = "arm64-v8a"
 build-mode = "both"
