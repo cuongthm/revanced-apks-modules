@@ -1,4 +1,5 @@
 enable-magisk-update = true
+include-stock = false
 
 [Facebook]
 uptodown-dlurl = "https://facebook.uptodown.com/android"
