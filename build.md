@@ -1,6 +1,6 @@
-Messenger: 525.0.0.44.108  
 Facebook: 490.0.0.63.82  
 Reddit: 2024.17.0  
+Messenger: 525.0.0.44.108  
 SolidExplorer: 2.8.63  
 TikTok: 36.5.4  
 Viber: 26.1.2.0  

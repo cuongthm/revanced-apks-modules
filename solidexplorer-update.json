@@ -1,6 +1,6 @@
 {
   "version": "v2.8.63 (patches 5.40.0)",
-  "versionCode": 3,
-  "zipUrl": "https://github.com/cuongthm/revanced-apks-modules/releases/download/3/solidexplorer-revanced-magisk-v2.8.63-arm64-v8a.zip",
+  "versionCode": 1,
+  "zipUrl": "https://github.com/cuongthm/revanced-apks-modules/releases/download/1/solidexplorer-revanced-magisk-v2.8.63-arm64-v8a.zip",
   "changelog": "https://raw.githubusercontent.com/cuongthm/revanced-apks-modules/update/build.md"
 }
