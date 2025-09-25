@@ -4,34 +4,28 @@ enable-magisk-update = true
 uptodown-dlurl = "https://facebook.uptodown.com/android"
 arch = "arm64-v8a"
 build-mode = "both"
-include-stock = false
 
 [Messenger]
 uptodown-dlurl = "https://facebook-messenger.uptodown.com/android"
 arch = "arm64-v8a"
 build-mode = "both"
-include-stock = false
 
 [YouTube]
 apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube/"
 arch = "arm64-v8a"
 build-mode = "both"
-include-stock = false
 
 [TikTok]
 apkmirror-dlurl = "https://www.apkmirror.com/apk/tiktok-pte-ltd/tik-tok/"
 arch = "arm64-v8a"
 build-mode = "both"
-include-stock = false
 
 [Reddit]
 apkmirror-dlurl = "https://www.apkmirror.com/apk/redditinc/reddit/"
 arch = "arm64-v8a"
 build-mode = "both"
-include-stock = false
 
 [Viber]
 apkmirror-dlurl = "https://www.apkmirror.com/apk/viber-media-s-a-r-l/viber/"
 arch = "arm64-v8a"
 build-mode = "both"
-include-stock = false
