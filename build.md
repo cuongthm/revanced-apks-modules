@@ -1,5 +1,5 @@
 Facebook: 490.0.0.63.82  
-Messenger: 525.0.0.44.108  
+Messenger: 526.0.0.52.108  
 Reddit: 2024.17.0  
 TikTok: 36.5.4  
 Viber: 26.1.2.0  
