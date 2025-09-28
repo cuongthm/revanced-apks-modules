@@ -393,7 +393,7 @@ dl_uptodown() {
 	if [ -z "$versionURL" ]; then return 1; fi
  	versionURL=$(jq -e -r '.url + "/" + .extraURL + "/" + (.versionID | tostring)' <<<"$versionURL")
 	resp=$(req "$versionURL" -) || return 1
- 	
+
 	local data_version files node_arch data_file_id
 	data_version=$($HTMLQ '.button.variants' --attribute data-version <<<"$resp") || return 1
 	if [ "$data_version" ]; then
@@ -415,6 +415,7 @@ dl_uptodown() {
 	else
 		req "https://dw.uptodown.com/dwn/${data_url}" "$output"
 	fi
+	ls -al $output
 }
 get_uptodown_pkg_name() { $HTMLQ --text "tr.full:nth-child(1) > td:nth-child(3)" <<<"$__UPTODOWN_RESP_PKG__"; }
 
