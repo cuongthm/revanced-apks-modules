@@ -1,12 +1,13 @@
 enable-magisk-update = true
 
 [Facebook]
-apkmirror-dlurl = "https://www.apkmirror.com/apk/facebook-2/facebook/"
+uptodown-dlurl = "https://facebook.uptodown.com/android"
 arch = "arm64-v8a"
 build-mode = "both"
 
 [Messenger]
-apkmirror-dlurl = "https://www.apkmirror.com/apk/facebook-2/messenger/"
+enabled = false
+uptodown-dlurl = "https://facebook-messenger.uptodown.com/android"
 arch = "arm64-v8a"
 build-mode = "both"
 
