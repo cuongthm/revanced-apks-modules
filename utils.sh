@@ -394,15 +394,23 @@ dl_uptodown() {
  	versionURL=$(jq -e -r '.url + "/" + .extraURL + "/" + (.versionID | tostring)' <<<"$versionURL")
 	resp=$(req "$versionURL" -) || return 1
 
-	local data_version files node_arch data_file_id
+	local data_version files data_file_id node_arch n=1
 	data_version=$($HTMLQ '.button.variants' --attribute data-version <<<"$resp") || return 1
 	if [ "$data_version" ]; then
 		files=$(req "${uptodown_dlurl%/*}/app/${data_code}/version/${data_version}/files" - | jq -e -r .content) || return 1
-		for ((n = 1; n < 12; n += 2)); do
-			node_arch=$($HTMLQ ".content > p:nth-child($n)" --text <<<"$files" | xargs) || return 1
+		if [ -z "$($($HTMLQ ".content > p:nth-child(3)" --text <<<"$files" | xargs) || return 1)" ]; then
+			echo "empty P text"
+			exit
+			return 1
+		fi
+		while ((node_arch = $($HTMLQ ".content > p:nth-child($n)" --text <<<"$files" | xargs) || return 1)); do
 			if [ -z "$node_arch" ]; then return 1; fi
 			if ! isoneof "$node_arch" "${apparch[@]}"; then continue; fi
-			data_file_id=$($HTMLQ "div.variant:nth-child($((n + 1))) > .v-report" --attribute data-file-id <<<"$files") || return 1
+		done
+		for ((n = 1, ; n < 12; n++)); do
+			if [ -z "$node_arch" ]; then return 1; fi
+			if ! isoneof "$node_arch" "${apparch[@]}"; then continue; fi
+			data_file_id=$($HTMLQ "div.variant:nth-child($((n+=1))) > .v-report" --attribute data-file-id <<<"$files") || return 1
 			resp=$(req "${uptodown_dlurl}/download/${data_file_id}-x" -)
 			break
 		done
@@ -415,7 +423,6 @@ dl_uptodown() {
 	else
 		req "https://dw.uptodown.com/dwn/${data_url}" "$output"
 	fi
-	ls -al "$output"
 }
 get_uptodown_pkg_name() { $HTMLQ --text "tr.full:nth-child(1) > td:nth-child(3)" <<<"$__UPTODOWN_RESP_PKG__"; }
 
