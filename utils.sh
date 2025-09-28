@@ -403,9 +403,9 @@ dl_uptodown() {
 			if [ -z "$node_arch" ]; then return 1; fi
 			if ! isoneof "$node_arch" "${apparch[@]}"; then continue; fi
 			data_file_id=$($HTMLQ "div.variant:nth-child($((n + 1))) > .v-report" --attribute data-file-id <<<"$files") || return 1
-echo "${uptodown_dlurl}/download/${data_file_id}-x"
-exit
 			resp=$(req "${uptodown_dlurl}/download/${data_file_id}-x" -)
+echo "$resp"
+exit
 			break
 		done
 	fi
