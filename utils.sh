@@ -394,22 +394,18 @@ dl_uptodown() {
  	versionURL=$(jq -e -r '.url + "/" + .extraURL + "/" + (.versionID | tostring)' <<<"$versionURL")
 	resp=$(req "$versionURL" -) || return 1
 
-	local data_version files data_file_id node_arch n=1
+	local data_version files data_file_id node_arch tempStr n=0
 	data_version=$($HTMLQ '.button.variants' --attribute data-version <<<"$resp") || return 1
 	if [ "$data_version" ]; then
 		files=$(req "${uptodown_dlurl%/*}/app/${data_code}/version/${data_version}/files" - | jq -e -r .content) || return 1
-		if [ -z "$(($($HTMLQ ".content > p:nth-of-type($((n++)))" --text <<<"$files" | xargs) || return 1))" ]; then return 1; fi
-		while ((node_arch = $($HTMLQ ".content > p:nth-of-type($((n++)))" --text <<<"$files" | xargs) || return 1)); do
-			if [ -z "$node_arch" ]; then return 1; fi
+		while ((node_arch = $($HTMLQ ".content > p:nth-child($((++n)))" --text <<<"$files" | xargs) || return 1)); do
 			if ! isoneof "$node_arch" "${apparch[@]}"; then continue; fi
 		done
-		for ((n = 1, ; n < 12; n++)); do
-			if [ -z "$node_arch" ]; then return 1; fi
-			if ! isoneof "$node_arch" "${apparch[@]}"; then continue; fi
-			data_file_id=$($HTMLQ "div.variant:nth-child($((n+=1))) > .v-report" --attribute data-file-id <<<"$files") || return 1
-			resp=$(req "${uptodown_dlurl}/download/${data_file_id}-x" -)
-			break
+		if [ -z "$node_arch" ]; then return 1; fi
+		while ((tempStr = $($HTMLQ "div.variant:nth-child($((++n))) > .v-report" --attribute data-file-id <<<"$files") || return 1)); do
+			data_file_id="$tempStr"
 		done
+		resp=$(req "${uptodown_dlurl}/download/${data_file_id}-x" -)
 	fi
 	local data_url
 	data_url=$($HTMLQ "#detail-download-button" --attribute data-url <<<"$resp") || return 1
