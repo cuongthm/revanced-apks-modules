@@ -1,13 +1,13 @@
 enable-magisk-update = true
 
 [Facebook]
-uptodown-dlurl = "https://facebook.uptodown.com/android"
+uptodown-dlurl = "https://facebook.en.uptodown.com/android"
 arch = "arm64-v8a"
 build-mode = "both"
 
 [Messenger]
 enabled = false
-uptodown-dlurl = "https://facebook-messenger.uptodown.com/android"
+uptodown-dlurl = "https://facebook-messenger.en.uptodown.com/android"
 arch = "arm64-v8a"
 build-mode = "both"
 
