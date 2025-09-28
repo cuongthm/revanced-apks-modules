@@ -400,11 +400,9 @@ dl_uptodown() {
 		files=$(req "${uptodown_dlurl%/*}/app/${data_code}/version/${data_version}/files" - | jq -e -r .content) || return 1
 		for ((n = 1; n < 12; n += 2)); do
 			node_arch=$($HTMLQ ".content > p:nth-child($n)" --text <<<"$files" | xargs) || return 1
-echo "$node_arch"
-exit
 			if [ -z "$node_arch" ]; then return 1; fi
 			if ! isoneof "$node_arch" "${apparch[@]}"; then continue; fi
-			data_file_id=$($HTMLQ "div.variant:nth-child($((n + 1))) > .v-report" --attribute data-file-id <<<"$files") || return 1
+			data_file_id=$($HTMLQ "div.variant:nth-child($($n + 1)) > .v-report" --attribute data-file-id <<<"$files") || return 1
 			resp=$(req "${uptodown_dlurl}/download/${data_file_id}-x" -)
 			break
 		done
