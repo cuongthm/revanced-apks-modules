@@ -415,7 +415,7 @@ dl_uptodown() {
 	else
 		req "https://dw.uptodown.com/dwn/${data_url}" "$output"
 	fi
-	ls -al $output
+	ls -al "$output"
 }
 get_uptodown_pkg_name() { $HTMLQ --text "tr.full:nth-child(1) > td:nth-child(3)" <<<"$__UPTODOWN_RESP_PKG__"; }
 
