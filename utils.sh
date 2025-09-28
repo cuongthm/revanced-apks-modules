@@ -404,13 +404,13 @@ dl_uptodown() {
 			if ! isoneof "$node_arch" "${apparch[@]}"; then continue; fi
 			data_file_id=$($HTMLQ "div.variant:nth-child($((n + 1))) > .v-report" --attribute data-file-id <<<"$files") || return 1
 			resp=$(req "${uptodown_dlurl}/download/${data_file_id}-x" -)
-echo "$resp"
-exit
 			break
 		done
 	fi
 	local data_url
 	data_url=$($HTMLQ "#detail-download-button" --attribute data-url <<<"$resp") || return 1
+echo "$data_url"
+exit
 	if [ $is_bundle = true ]; then
 		req "https://dw.uptodown.com/dwn/${data_url}" "$output.apkm" || return 1
 		merge_splits "${output}.apkm" "${output}"
