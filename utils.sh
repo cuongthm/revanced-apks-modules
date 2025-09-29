@@ -398,11 +398,13 @@ dl_uptodown() {
 	data_version=$($HTMLQ '.button.variants' --attribute data-version <<<"$resp") || return 1
 	if [ "$data_version" ]; then
 		files=$(req "${uptodown_dlurl%/*}/app/${data_code}/version/${data_version}/files" - | jq -e -r .content) || return 1
-		while (("$(node_arch=$($HTMLQ ".content > p:nth-child($((++n)))" --text <<<"$files" | xargs) || return 1)")); do
-			if [ -z "$node_arch" ]; then return 1; fi
+		while ((-z "$(node_arch=$($HTMLQ ".content > p:nth-child($((++n)))" --text <<<"$files" | xargs) || return 1)" && return 1)); do
 			if ! isoneof "$node_arch" "${apparch[@]}"; then continue; fi
 		done
+		echo "stop"
 		exit
+		tempStr=$($HTMLQ ".content > div.variant:nth-child(22) > .v-report" --attribute data-file-id <<<"$files") || return 1
+
 		while ((tempStr=$(($($HTMLQ "div.variant:nth-child($((++n))) > .v-report" --attribute data-file-id <<<"$files") || return 1)))); do
 			data_file_id="$tempStr"
 		done
