@@ -399,15 +399,12 @@ dl_uptodown() {
 	if [ "$data_version" ]; then
 		files=$(req "${uptodown_dlurl%/*}/app/${data_code}/version/${data_version}/files" - | jq -e -r .content) || return 1
 		for ((n = 1; ; ++n)); do
-			node_arch=$($HTMLQ ".content > p:nth-child($((n)))" --text <<<"$files" | xargs) || return 1
+			node_arch=$($HTMLQ ".content > p:nth-child($n)" --text <<<"$files" | xargs) || return 1
 			if [ -z "$node_arch" ]; then return 1; fi
 			if isoneof "$node_arch" "${apparch[@]}"; then break; fi
 		done
-		echo $n
-		echo "stop"
-		exit
-		while :; do
-			tempStr=$($HTMLQ ".content > .variant:nth-child($((++n))) > .v-report" --attribute data-file-id <<<"$files") || return 1
+		for ((++n; ; ++n)); do
+			tempStr=$($HTMLQ ".content > .variant:nth-child($n) > .v-report" --attribute data-file-id <<<"$files") || return 1
 			if [ -z "$tempStr" ]; then break; fi
 			data_file_id="$tempStr"
 		done
