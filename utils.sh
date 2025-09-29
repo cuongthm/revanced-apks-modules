@@ -398,7 +398,7 @@ dl_uptodown() {
 	data_version=$($HTMLQ '.button.variants' --attribute data-version <<<"$resp") || return 1
 	if [ "$data_version" ]; then
 		files=$(req "${uptodown_dlurl%/*}/app/${data_code}/version/${data_version}/files" - | jq -e -r .content) || return 1
-		while ((node_arch="$($($HTMLQ ".content > p:nth-child($((++n)))" --text <<<"$files" | xargs) || return 1)")); do
+		while ((node_arch=$($($HTMLQ ".content > p:nth-child($((++n)))" --text <<<"$files" | xargs) || return 1))); do
 			if [ -z "$node_arch" ]; then return 1; fi
 			if ! isoneof "$node_arch" "${apparch[@]}"; then continue; fi
 		done
