@@ -404,12 +404,8 @@ dl_uptodown() {
 			if isoneof "$node_arch" "${apparch[@]}"; then break; fi
 		done
 		while :; do
-			tempStr=$($HTMLQ ".content > div.variant:nth-child(22) > .v-report" --attribute data-file-id <<<"$files") || return 1
-			if [ -z "$tempStr" ]; then echo $data_file_id; exit; fi
-			data_file_id="$tempStr"
-		done
-
-		while ((tempStr=$(($($HTMLQ "div.variant:nth-child($((++n))) > .v-report" --attribute data-file-id <<<"$files") || return 1)))); do
+			tempStr=$($HTMLQ ".content > .variant:nth-child($((++n))) > .v-report" --attribute data-file-id <<<"$files") || return 1
+			if [ -z "$tempStr" ]; then break; fi
 			data_file_id="$tempStr"
 		done
 		resp=$(req "${uptodown_dlurl}/download/${data_file_id}-x" -)
