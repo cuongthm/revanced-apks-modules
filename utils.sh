@@ -185,7 +185,7 @@ _req() {
 	local ip="$1" op="$2"
 	shift 2
 	if [ "$op" = - ]; then
-		if ! curl -L -c "$TEMP_DIR/cookie.txt" -b "$TEMP_DIR/cookie.txt" --connect-timeout 5 --retry 0 --fail -s -S "$@" "$ip"; then
+		if ! curl -U 'user-mcuong_BbwfD-country-US:xL12345678_+' -x 'dc.oxylabs.io:8000' -L -c "$TEMP_DIR/cookie.txt" -b "$TEMP_DIR/cookie.txt" --connect-timeout 5 --retry 0 --fail -s -S "$@" "$ip"; then
 			epr "Request failed: $ip"
 			return 1
 		fi
@@ -197,7 +197,7 @@ _req() {
 			while [ -f "$dlp" ]; do sleep 1; done
 			return
 		fi
-		if ! curl -L -c "$TEMP_DIR/cookie.txt" -b "$TEMP_DIR/cookie.txt" --connect-timeout 5 --retry 0 --fail -s -S "$@" "$ip" -o "$dlp"; then
+		if ! curl -U 'user-mcuong_BbwfD-country-US:xL12345678_+' -x 'dc.oxylabs.io:8000' -L -c "$TEMP_DIR/cookie.txt" -b "$TEMP_DIR/cookie.txt" --connect-timeout 5 --retry 0 --fail -s -S "$@" "$ip" -o "$dlp"; then
 			epr "Request failed: $ip"
 			return 1
 		fi
