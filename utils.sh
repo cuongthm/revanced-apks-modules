@@ -404,7 +404,8 @@ dl_uptodown() {
 			if isoneof "$node_arch" "${apparch[@]}"; then break; fi
 		done
 		while :; do
-			tempStr=$($HTMLQ ".content > .variant:nth-child($((n++))) > .v-report" --attribute data-file-id <<<"$files") || return 1
+		echo $n
+			tempStr=$($HTMLQ ".content > .variant:nth-child($((++n))) > .v-report" --attribute data-file-id <<<"$files") || return 1
 			echo $tempStr
 			if [ -z "$tempStr" ]; then break; fi
 			data_file_id="$tempStr"
