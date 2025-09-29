@@ -401,11 +401,10 @@ dl_uptodown() {
 		while :; do
 			node_arch=$($HTMLQ ".content > p:nth-child($((++n)))" --text <<<"$files" | xargs) || return 1
 			if [ -z "$node_arch" ]; then return 1; fi
-			echo $node_arch
-			if isoneof "$node_arch" "${apparch[@]}"; then exit; fi
+			if isoneof "$node_arch" "${apparch[@]}"; then break; fi
 		done
 		while :; do
-			tempStr=$($HTMLQ ".content > .variant:nth-child($((++n))) > .v-report" --attribute data-file-id <<<"$files") || return 1
+			tempStr=$($HTMLQ ".content > .variant:nth-child($((n++))) > .v-report" --attribute data-file-id <<<"$files") || return 1
 			echo $tempStr
 			if [ -z "$tempStr" ]; then break; fi
 			data_file_id="$tempStr"
