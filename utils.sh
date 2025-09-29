@@ -394,14 +394,13 @@ dl_uptodown() {
  	versionURL=$(jq -e -r '.url + "/" + .extraURL + "/" + (.versionID | tostring)' <<<"$versionURL")
 	resp=$(req "$versionURL" -) || return 1
 
-	local data_version files data_file_id n=0
+	local data_version files data_file_id n
 	data_version=$($HTMLQ '.button.variants' --attribute data-version <<<"$resp") || return 1
 	if [ "$data_version" ]; then
 		files=$(req "${uptodown_dlurl%/*}/app/${data_code}/version/${data_version}/files" - | jq -e -r .content) || return 1
-		while :; do
-			node_arch=$($HTMLQ ".content > p:nth-child($((++n)))" --text <<<"$files" | xargs) || return 1
+		for ((n = 1; ; ++n)); do
+			node_arch=$($HTMLQ ".content > p:nth-child($((n)))" --text <<<"$files" | xargs) || return 1
 			if [ -z "$node_arch" ]; then return 1; fi
-		echo $n
 			if isoneof "$node_arch" "${apparch[@]}"; then break; fi
 		done
 		echo $n
