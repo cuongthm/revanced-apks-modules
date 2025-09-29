@@ -401,18 +401,17 @@ dl_uptodown() {
 		while :; do
 			node_arch=$($HTMLQ ".content > p:nth-child($((++n)))" --text <<<"$files" | xargs) || return 1
 			if [ -z "$node_arch" ]; then return 1; fi
+		echo $n
 			if isoneof "$node_arch" "${apparch[@]}"; then break; fi
 		done
-		while :; do
 		echo $n
-			tempStr=$($HTMLQ ".content > .variant:nth-child($((++n))) > .v-report" --attribute data-file-id <<<"$files") || return 1
-			echo $tempStr
-			if [ -z "$tempStr" ]; then break; fi
-			data_file_id="$tempStr"
-			echo $data_file_id
-		done
 		echo "stop"
 		exit
+		while :; do
+			tempStr=$($HTMLQ ".content > .variant:nth-child($((++n))) > .v-report" --attribute data-file-id <<<"$files") || return 1
+			if [ -z "$tempStr" ]; then break; fi
+			data_file_id="$tempStr"
+		done
 		resp=$(req "${uptodown_dlurl}/download/${data_file_id}-x" -)
 	fi
 	local data_url
