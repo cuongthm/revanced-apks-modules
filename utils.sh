@@ -405,9 +405,13 @@ dl_uptodown() {
 		done
 		while :; do
 			tempStr=$($HTMLQ ".content > .variant:nth-child($((++n))) > .v-report" --attribute data-file-id <<<"$files") || return 1
+			echo $tempStr
 			if [ -z "$tempStr" ]; then break; fi
 			data_file_id="$tempStr"
+			echo $data_file_id
 		done
+		echo "stop"
+		exit
 		resp=$(req "${uptodown_dlurl}/download/${data_file_id}-x" -)
 	fi
 	local data_url
